@@ -1,0 +1,9 @@
+.contenitore{
+    display: flex;
+    align-items: center;
+}
+
+.h2{
+    margin-right: 20px;
+}
+

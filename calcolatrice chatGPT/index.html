@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #cube {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background-color: red;
+      transition: transform 0.3s ease; /* Animazione della transizione */
+    }
+
+    #elapsed-time {
+      font-size: 24px;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+    <label for="cubeCount">Numero di cubi (2-10):</label>
+  <input type="number" id="cubeCount" min="2" max="10">
+  <button onclick="createCubes()">Crea Cubi</button>
+  <button onclick="changeCubeShape()">Cambia Forma</button>
+  <span id="elapsed-time">Tempo trascorso: 0:00</span>
+
+  <div id="cubeContainer"></div>
+  <div id="cube"></div>
+
+  <script>
+    function createCubes() {
+      var cubeCountInput = document.getElementById("cubeCount");
+      var cubeCount = parseInt(cubeCountInput.value);
+      var cubeContainer = document.getElementById("cubeContainer");
+      cubeContainer.innerHTML = ""; // Pulisci il contenitore dei cubi
+    }
+      if (cubeCount >= 2 && cubeCount <= 10) {
+        for (var i = 0; i < cubeCount; i++) {
+          var cube = document.createElement("div");
+          cube.className = "cube";
+          cube.style.top = Math.random() * 400 + "px"; // Posizione verticale casuale
+          cube.style.left = Math.random() * 400 + "px"; // Posizione orizzontale casuale
+          cube.style.backgroundColor = getRandomColor(); // Colore casuale
+          cubeContainer.appendChild(cube);
+        }
+      } else 
+        alert("Seleziona un numero compreso tra 2 e 10 per i cubi.");
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var cube = document.getElementById("cube");
+      var currentPosition = { x: 0, y: 0 };
+      var stepSize = 10; // Dimensione dello spostamento del cubo
+
+      
+
+      function updateCubePosition() {
+        cube.style.left = currentPosition.x + "px";
+        cube.style.top = currentPosition.y + "px";
+      }
+
+      function moveToCenter() {
+        var windowWidth = window.innerWidth;
+        var windowHeight = window.innerHeight;
+
+        var centerPosition = {
+          x: (windowWidth - cube.offsetWidth) / 2,
+          y: (windowHeight - cube.offsetHeight) / 2
+        };
+
+        currentPosition = centerPosition;
+        updateCubePosition();
+      }
+
+      function handleKeyPress(event) {
+        var key = event.key;
+        
+        // Sposta il cubo in base al tasto premuto
+        if (key === "w" || key === "W") {
+          currentPosition.y -= stepSize; // Sposta il cubo in alto
+        } else if (key === "s" || key === "S") {
+          currentPosition.y += stepSize; // Sposta il cubo in basso
+        } else if (key === "a" || key === "A") {
+          currentPosition.x -= stepSize; // Sposta il cubo a sinistra
+        } else if (key === "d" || key === "D") {
+          currentPosition.x += stepSize; // Sposta il cubo a destra
+        } else if (key === "1") {
+          moveToCenter(); // Sposta il cubo al centro
+        }
+
+        // Aggiorna la posizione del cubo
+        updateCubePosition();
+      }
+
+      // Aggiungi un gestore di eventi per la pressione dei tasti
+      document.addEventListener("keydown", handleKeyPress);
+    });
+
+function getRandomColor() {
+      var letters = "0123456789ABCDEF";
+      var color = "#";
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    var cube = document.getElementById("cube");
+    var currentRotation = 0;
+    var startTime = new Date();
+
+    function changeCubeShape() {
+      currentRotation += 45; // Ruota di 45 gradi ad ogni cambio di forma
+      cube.style.transform = "rotate(" + currentRotation + "deg)";
+    }
+
+    function updateTime() {
+        var timeElement = document.getElementById("elapsed-time");
+        var currentTime = new Date();
+        var elapesedTime = Math.floor((currentTime - startTime) / 1000);
+
+        if (elapesedTime >=300) {
+            timeElement.textContent ="Hai Vinto!";
+        } else {
+            var minutes = Math.floor(elapesedTime / 60);
+            var seconds = elapesedTime % 60;
+            var formattedTime = minutes + " : " + (second < 10 ? "0" : "") + seconds;
+            timeElement.textContent = "Tempo trascorso: " + formattedTime;
+        }
+    }
+
+    setInterval(updateTime, 1000);
+
+  </script>
+</body>
+</html>
+

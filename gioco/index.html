@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gioco di rigori</title>
+  <style>
+    
+  </style>
+</head>
+<body>
+  <h1>Gioco di rigori</h1>
+  <div id="game-container">
+    <div id="goal">
+      <div id="ball"></div>
+    </div>
+    <div id="score">Punteggio: 0</div>
+    <div id="buttons">
+      <button onclick="shoot()">Tira</button>
+      <button onclick="reset()">Ricomincia</button>
+    </div>
+  </div>
+
+  <!-- Script JavaScript per il gioco -->
+  <script>
+    var ball = document.getElementById("ball");
+    var goal = document.getElementById("goal");
+    var scoreDisplay = document.getElementById("score");
+    var score = 0;
+
+    function shoot() {
+      var randomPosition = Math.floor(Math.random() * (goal.offsetWidth - ball.offsetWidth));
+      ball.style.left = randomPosition + "px";
+      animateBall();
+    }
+
+    function animateBall() {
+      var position = 0;
+      var interval = setInterval(function() {
+        position += 5;
+        ball.style.bottom = position + "px";
+
+        if (position >= goal.offsetHeight) {
+          clearInterval(interval);
+          checkGoal();
+        }
+      }, 10);
+    }
+
+    function checkGoal() {
+      var ballPosition = parseInt(ball.style.left);
+      var goalStart = parseInt(goal.offsetLeft);
+      var goalEnd = goalStart + goal.offsetWidth;
+
+      if (ballPosition >= goalStart && ballPosition <= goalEnd) {
+        score++;
+      }
+
+      scoreDisplay.textContent = "Punteggio: " + score;
+    }
+
+    function reset() {
+      score = 0;
+      scoreDisplay.textContent = "Punteggio: 0";
+    }
+  </script>
+</body>
+</html>

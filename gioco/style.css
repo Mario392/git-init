@@ -1,0 +1,32 @@
+#goal {
+    background-color: #009900; /* Cambia il colore di sfondo del goal */
+    border-color: #fff; /* Cambia il colore del bordo del goal */
+    width: 300px; /* Cambia la larghezza della porta */
+    height: 150px; /* Cambia l'altezza della porta */
+  }
+  
+  #ball {
+    background-color: #ff0000; /* Cambia il colore di sfondo del pallone */
+    width: 40px; /* Cambia la larghezza del pallone */
+    height: 40px; /* Cambia l'altezza del pallone */
+    animation: ball-animation 1s linear infinite; /* Aggiungi un'animazione al pallone */
+  }
+  
+  @keyframes ball-animation {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-200px); }
+    100% { transform: translateY(0); }
+  }
+  
+  button {
+    background-color: #333; /* Cambia il colore di sfondo dei pulsanti */
+    color: #fff; /* Cambia il colore del testo dei pulsanti */
+    cursor: pointer; /* Cambia l'aspetto del cursore al passaggio del mouse */
+    padding: 10px 20px; /* Aggiungi un po' di spazio intorno ai pulsanti */
+    margin-right: 10px; /* Aggiungi uno spazio tra i pulsanti */
+  }
+  
+  button:hover {
+    background-color: #555; /* Cambia il colore di sfondo dei pulsanti al passaggio del mouse */
+  }
+  

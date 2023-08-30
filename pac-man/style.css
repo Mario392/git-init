@@ -1,0 +1,24 @@
+.container {
+    text-align: center;
+    margin-top: 100px;
+  }
+  
+  h1 {
+    color: #333;
+  }
+  
+  #randomNumber {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  #generateButton {
+    padding: 10px 20px;
+    background-color: #337ab7;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
